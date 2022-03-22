@@ -1,14 +1,10 @@
-import csv
-from fastapi import FastAPI, Request
-from fastapi.responses import HTMLResponse
+from func import *
+from fastapi import FastAPI
 
-main_l = []
+app = FastAPI()
 
-#with open('d:/User Projects/SBB-Test/src/binlist-data.csv', 'r') as csv_file:
-with open('d:/User Projects/SBB-Test/src/binlist-data.csv', 'r', encoding='utf-8') as csv_file:
-    reader = csv.reader(csv_file)
-    for row in reader:
-        main_l.append(row)
+res_list = file_init()
 
-for row in main_l:
-    print(row)
+@app.get("/cards/{card_number}", status_code=200)
+async def read_item(card_number):
+    return data_check(card_init(card_number), res_list,)
