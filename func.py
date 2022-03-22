@@ -1,7 +1,13 @@
-from fastapi import HTTPException
 import csv
+from fastapi import HTTPException
 
-path_to_file = 'd:/User Projects/SBB-Test/src/binlist-data.csv'
+from pathlib import Path
+import os
+
+home = os.getcwd()
+path_to_file = Path(home, "src", "binlist-data.csv")
+
+#path_to_file = 'd:/User Projects/SBB-Test/src/binlist-data.csv'
 
 def file_init():
     main_l = []
@@ -29,5 +35,5 @@ def data_check(n_card_number, main_l):
     for row in main_l:
         if row[0] == n_card_number:
             return(row)
-        else:
-            return 'Card number not in database.'
+    else:
+        return 'Card number not in database.'
