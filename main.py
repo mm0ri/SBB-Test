@@ -1,9 +1,14 @@
 from func import *
 from fastapi import FastAPI
+from fastapi.responses import RedirectResponse
+
+res_list = file_init()
 
 app = FastAPI()
 
-res_list = file_init()
+@app.exception_handler(404)
+async def custom_http_exception_handler(request, exc):
+    return RedirectResponse("/",)
 
 @app.get("/", status_code=200)
 async def start_page():
@@ -15,4 +20,6 @@ async def card_page():
 
 @app.get("/cards/{card_number}", status_code=200)
 async def read_item(card_number):
-    return data_check(card_init(card_number), res_list,)
+    return data_check(card_init(str(card_number)), res_list,)
+
+
