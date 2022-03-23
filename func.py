@@ -39,4 +39,4 @@ def data_check(n_card_number, main_l):
         if row[0] == n_card_number:
             return(row)
     else:
-        return 'Card number not in database.'
+        raise HTTPException(status_code = 500, detail='Card not in database.')
