@@ -1,8 +1,8 @@
 import csv
-from fastapi import HTTPException
-
-from pathlib import Path
 import os
+
+from fastapi import HTTPException
+from pathlib import Path
 
 home = os.getcwd()
 path_to_file = Path(home, "src", "binlist-data.csv")
@@ -18,17 +18,20 @@ def file_init():
         return main_l
 
 def card_init(card_number):
-    status_code = 500
     if len(card_number) >= 16 and len(card_number) <= 20 and card_number.isdigit():
         n_card_number = card_number[0:6]
         return n_card_number
     elif card_number.isdigit() == False:
+        status_code = 500
         raise HTTPException(status_code, detail=f'Status code: {status_code}. Wrong card number type. Its should contain only numbers.')
     elif len(card_number) < 16:
+        status_code = 500
         raise HTTPException(status_code, detail=f'Status code: {status_code}. Wrong card number size. Its size should be more than 16.')
     elif len(card_number) > 20:
+        status_code = 500
         raise HTTPException(status_code, detail=f'Status code: {status_code}. Wrong card number size. Its size should be less than 20.')
     else:
+        status_code = 500
         raise HTTPException(status_code, detail=f'Status code: {status_code}. Wrong card number. Its size should be more than 16 and less that 20 digits and contain only numbers. And no free space in the number')
 
 def data_check(n_card_number, main_l):
