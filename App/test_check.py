@@ -3,6 +3,8 @@ from fastapi import FastAPI
 from fastapi.testclient import TestClient
 from fastapi.responses import RedirectResponse
 
+# To start tests use command: pytest test_check.py
+
 app = FastAPI()
 
 res_list = file_init()

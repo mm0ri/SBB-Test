@@ -2,6 +2,8 @@ import unittest
 import requests
 from func import *
 
+# To start tests use this command: python3 -m unittest
+
 main_l = file_init()
 
 class TestBank(unittest.TestCase):
