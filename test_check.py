@@ -49,4 +49,4 @@ def test_func_false2():
 
 def test_exception():
     response = client.get("///")
-    assert response.status_code == 307
+    assert response.status_code == 200
