@@ -1,0 +1,11 @@
+version: '3'
+services:
+    web:
+      build: .
+      container_name: sbb-test-docker
+      environment:
+        - PYTHONPATH=/app
+      volumes:
+        - ./app:/app
+      ports:
+        - "8000:15400"
